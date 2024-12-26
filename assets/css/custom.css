@@ -1,23 +1,71 @@
-/* Menu Bar Styles */
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    background: #333;
-    padding: 10px;
+/* Main Menu Styling */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu > li {
+  position: relative;
+}
+
+.menu > li > a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.menu > li > a:hover {
+  background-color: #444;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #b71c1c;
+  min-width: 200px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #8a1515;
+}
+
+.dropdown-menu li a {
+  display: block;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #8a1515;
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
   }
-  
-  nav ul li {
-    display: inline;
+  .menu > li {
+    text-align: center;
   }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  .dropdown-menu {
+    position: static;
   }
-  
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
+}
