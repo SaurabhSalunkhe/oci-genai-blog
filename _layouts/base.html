@@ -1,41 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
   {%- include head.html -%}
 
   <body>
 
     {%- include header.html -%}
-
-    <header>
-      <nav>
-        <ul class="menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/webinars/">Webinars</a></li>
-          <li><a href="/slides/">Slides</a></li>
-          <li><a href="/white-papers/">White Papers</a></li>
-          <li class="dropdown">
-            <a href="#">Categories ▼</a>
-            <ul class="dropdown-menu">
-              <li><a href="/categories/application-continuity/">Application Continuity</a></li>
-              <li><a href="/categories/autonomous-database/">Autonomous Database</a></li>
-              <li><a href="/categories/connectivity/">Connectivity</a></li>
-              <li><a href="/categories/database-migration/">Database Migration</a></li>
-              <li><a href="/categories/database-security/">Database Security</a></li>
-              <li><a href="/categories/disaster-recovery/">Disaster Recovery</a></li>
-              <li><a href="/categories/high-availability/">High Availability</a></li>
-              <li><a href="/categories/multicloud/">Multicloud</a></li>
-              <li><a href="/categories/multitenant/">Multitenant</a></li>
-              <li><a href="/categories/oracle-cloud/">Oracle Cloud</a></li>
-              <li><a href="/categories/patching-upgrade/">Patching & Upgrade</a></li>
-              <li><a href="/categories/surprise-bag/">Surprise Bag</a></li>
-            </ul>
-          </li>
-          <li><a href="/about/">About</a></li>
-        </ul>
-      </nav>
-    </header>
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
