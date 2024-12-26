@@ -1,0 +1,23 @@
+/* Menu Bar Styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    background: #333;
+    padding: 10px;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+  

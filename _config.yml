@@ -8,6 +8,12 @@ url: "artofgenai.com"  # Replace with your custom domain (if any)
 # Theme
 theme: minima                      # Default theme for GitHub Pages
 
+# Navigation Links
+header_pages:
+  - about.md
+  - contact.md
+  - blog.md
+
 # Base URL
 baseurl: ""                        # Leave blank if your blog is at root (e.g., https://yourusername.github.io)
 
