@@ -1,4 +1,52 @@
-title: "My Awesome Blog"
-description: "Sharing thoughts, tutorials, and stories"
-author: "Your Name"
-theme: minima
+# Site Information
+title: "OCI Gen AI"           # Replace with your blog's title
+description: "A blog about OCI gen AI " # Replace with your blog's description
+author: "Saurabh Salunkhe"                # Replace with your name
+email: "saurabh.salunkhe81@gmail.com"           # Optional: Your email address
+url: "artofgenai.com"  # Replace with your custom domain (if any)
+
+# Theme
+theme: minima                      # Default theme for GitHub Pages
+
+# Base URL
+baseurl: ""                        # Leave blank if your blog is at root (e.g., https://yourusername.github.io)
+
+# GitHub Repository
+repository: saurabhsalunkhe/saurabhsalunkhe.github.io
+
+# Social Media Links (Optional)
+social_links:
+  github: saurabhsalunkhe
+
+# Plugins (Ensure these are installed)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/  # URL structure for blog posts
+
+# Collections (Optional, if using collections)
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# Pagination (Optional)
+paginate: 5
+paginate_path: "/page:num/"
+
+# Include and Exclude Files
+include:
+  - _pages
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
