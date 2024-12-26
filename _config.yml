@@ -10,7 +10,7 @@ theme: minima                      # Default theme for GitHub Pages
 
 # Navigation Links
 header_pages:
-  - about.md
+  - about.html
   - contact.md
   - blog.md
   
