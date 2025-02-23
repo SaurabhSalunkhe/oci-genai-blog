@@ -1,0 +1,66 @@
+---
+layout: post
+title: "Harnessing OCI Generative AI with k8sgpt: A Step-by-Step Guide for OCI Kubernetes Users"
+date: 2025-02-23
+categories: [General]
+tags: [OCI, Kubernetes, Generative AI, k8sgpt]
+author: "Saurabh Salunkhe"
+---
+## Introduction
+k8sgpt is a powerful command-line tool that scans your Kubernetes clusters, diagnoses issues, and provides human-friendly recommendations in plain English. It encapsulates SRE (Site Reliability Engineering) expertise into its analyzers, streamlining troubleshooting in even the most complex Kubernetes environments.
+
+For OCI customers running Kubernetes—whether in OKE clusters or other OCI-managed environments—k8sgpt offers a great option. It supports OCI Generative AI as a backend, which lets you leverage Oracle’s cutting-edge AI models to generate detailed explanations and actionable solutions for your cluster issues.
+
+k8sgpt and OCI Generative AI
+OCI Generative AI Service empowers you to use advanced language models for text generation, chat, and more. By integrating k8sgpt with OCI Generative AI, you can combine powerful Kubernetes diagnostics with AI-generated insights.
+
+Important: When configuring the OCI backend in k8sgpt, it is recommended to use the OCI model’s OCID (as provided by your OCI console) rather than a generic model name. This ensures that OCI looks up the correct, dedicated resource for on‑demand inferencing.
+
+## Step-by-Step Guide
+1. Install k8sgpt
+For macOS/Linux users, you can install k8sgpt using Homebrew:
+
+{% highlight ruby %}
+brew tap k8sgpt-ai/k8sgpt
+brew install k8sgpt
+Verify the installation by checking the version:
+
+
+k8sgpt version
+2. Remove Existing OCI Backend
+If you have a previous OCI configuration, remove it with:
+
+k8sgpt auth remove --backend oci
+
+3. Add OCI Backend Using the OCI Model OCID
+Add your OCI backend by supplying your compartment OCID and the OCI model OCID. Replace the placeholder below with the actual OCI model OCID from your OCI Console.
+
+
+k8sgpt auth add --backend oci \
+  --compartmentId ocid1.compartment.oc1..aaaaaaaabpucmfklhkfat2flpqxj644qr3oe2gdwwpfwuzr33g2o2aol47vq \
+  --model "ocid1.model.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+4. Set OCI as the Default Backend
+Make OCI your default provider:
+
+k8sgpt auth default -p oci
+
+5. Verify the Configuration
+Check that your OCI backend is correctly configured and set as default:
+
+k8sgpt auth list
+You should see OCI listed with your specified model OCID as the default provider.
+
+6. Test k8sgpt with Your Kubernetes Cluster
+Finally, run a cluster analysis to confirm that k8sgpt is working with OCI Generative AI:
+
+
+k8sgpt analyze --explain --backend oci
+{% endhighlight %}
+
+If everything is set up correctly, k8sgpt will scan your cluster and either report “No problems detected” or provide detailed explanations of any issues.
+
+## Conclusion
+By following these steps, OCI customers can leverage k8sgpt integrated with OCI Generative AI to bring AI-powered diagnostics into their Kubernetes environments. This powerful setup combines enterprise-grade security, scalability, and cutting-edge AI inferencing to simplify troubleshooting and enhance operational efficiency.
+
+Happy troubleshooting and enjoy your AI-powered Kubernetes management!
