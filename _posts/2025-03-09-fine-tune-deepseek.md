@@ -1,29 +1,30 @@
 ---
 layout: post
-title: "Fine-Tuning DeepSeek-R1-Distill-Qwen-1.5B for Healthcare: Generating Patient Discharge Summaries"
+title: "Fine-Tuning DeepSeek-R1 for Healthcare: Generating Patient Discharge Summaries"
 date: 2025-03-09
 categories: [Healthcare, AI, Fine-Tuning]
 tags: [DeepSeek, Quantization, LoRA, Healthcare AI]
 author: "Saurabh Salunkhe"
 ---
 ## Introduction
-Fine-tuning a language model like DeepSeek-R1-Distill-Qwen-1.5B for generating patient discharge summaries is a complex process tailored to specific healthcare needs. In this blog, we will discuss a high-level framework for fine-tuning this model, including why it outperforms Retrieval-Augmented Generation (RAG), and provide code snippets for key steps like installation, quantization, and LoRA.
+In this blog post, we will explore high-level steps to fine-tune a large language model, specifically selecting the DeepSeek-R1-Distill-Qwen-1.5B for generating patient discharge summaries tailored to healthcare needs. We wll discuss why fine-tuning is crucial for improving model accuracy and relevance compared to alternatives like Retrieval-Augmented Generation (RAG). Key steps, including installation, quantization, and LoRA, will be highlighted with code snippets
 
 ## Sample Dataset overview
 
 Sample Dataset Overview
-The sample dataset consists of patient records like the below, each with a concise clinical note and a corresponding detailed discharge summary. Here is an example from the dataset:
+The sample dataset consists of patient records (artificially generated) like the below, each with a concise clinical note and a corresponding detailed discharge summary. Here is an example from the dataset:
 
 Clinical Note: "36 y/o female, adm 2025-03-07, c/o headache x 1 week. Dx: appendicitis. PMH: hyperlipidemia. Tx: azithromycin 500 mg x 1 then 250 mg QD x 4 days, albuterol PRN. CT scan: 90% RCA occlusion. Labs: CRP 15 mg/L. D/c 2025-03-07."
+
+
 Discharge Summary: "Ms. Joseph Morton, 36, was admitted on 2025-03-07 with headache for 1 week, diagnosed with appendicitis. History of hyperlipidemia. Treated with azithromycin 500 mg x 1 then 250 mg QD x 4 days, albuterol PRN. CT scan revealed 90% RCA occlusion. Labs indicated CRP 15 mg/L. Discharged on 2025-03-07. Follow up with your cardiologist in 1 week."
+
 This dataset represents a sequence-to-sequence task where the model must transform short, jargon-heavy notes into structured, patient-friendly summaries.
 
-## Why Fine-Tuning Makes Sense Over RAG
-Fine-tuning DeepSeek-R1-Distill-Qwen-1.5B outperforms RAG for discharge summaries by internalizing medical knowledge, understanding jargon, ensuring data security, and delivering consistent outputs. RAGs reliance on external retrieval risks security and inconsistency.
 
 ## Step-by-Step Guide to Fine-Tuning
 
-1. Installing and Loading the Model from Hugging Face
+I. Installing and Loading the Model from Hugging Face
 First, set up the environment and load the model and tokenizer from Hugging Face.
 
 {% highlight ruby %}
@@ -59,13 +60,15 @@ The transformers library provides tools to load pre-trained models and tokenizer
 trust_remote_code=True is necessary if the model includes custom code from Hugging Face.
 The test inference checks if the model is working, though the output may not yet be healthcare-specific without fine-tuning.
 
-2. Using Quantization
+II. Using Quantization
 
 Quantization reduces the models memory footprint and speeds up inference by lowering the precision of weights (e.g., from 32-bit floats to 8-bit integers).
 
 Why Use Quantization?
 Reduced Memory Usage: Allows deployment on devices with limited resources, such as hospital servers or edge devices.
+
 Faster Inference: Speeds up prediction, which is vital for real-time healthcare applications.
+
 Energy Efficiency: Lowers computational costs, making it more sustainable.
 
 
@@ -98,7 +101,7 @@ Explanation:
 BitsAndBytesConfig configures the quantization settings.
 device_map="auto" ensures the model is distributed across available GPUs or CPUs, optimizing resource use
 
-3. Implementing LoRA for Efficient Fine-Tuning
+III. Implementing LoRA for Efficient Fine-Tuning
 
 LoRA (Low-Rank Adaptation) is a parameter-efficient technique that fine-tunes a model by adding low-rank matrices to specific layers while keeping the original weights frozen.
 
@@ -137,7 +140,7 @@ PeftModel and LoraConfig are from the peft library, designed for parameter-effic
 target_modules specifies which layers to adapt; adjust based on the models architecture (check documentation if needed).
 print_trainable_parameters() confirms only LoRA parameters are trainable, keeping the base model frozen.
 
-4. Fine-Tuning Hyperparameters
+IV. Fine-Tuning Hyperparameters
 Beyond LoRA, tuning additional hyperparameters ensures optimal performance.
 
 Key Hyperparameters
@@ -185,7 +188,7 @@ TrainingArguments configures the training process.
 The dataset should be converted to a Dataset object using datasets library for real implementation.
 Monitor logs and evaluation metrics to adjust hyperparameters if needed.
 
-5. Generating Discharge Summaries
+V. Generating Discharge Summaries
 After fine-tuning, the model can generate summaries from clinical notes.
 
 
