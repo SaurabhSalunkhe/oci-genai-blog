@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fine-Tuning DeepSeek-R1-Distill-Qwen-1.5B for Healthcare: Generating Patient Discharge Summaries"
-date: 2025-02-23
+date: 2025-03-09
 categories: [Healthcare, AI, Fine-Tuning]
 tags: [DeepSeek, Quantization, LoRA, Healthcare AI]
 author: "Saurabh Salunkhe"
